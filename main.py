@@ -146,4 +146,5 @@ while True:
     pygame.draw.circle(screen, drawColor, [100, 100], brushSize,)
 
     pygame.display.flip()
+    print("testing")
     fpsClock.tick(fps)
