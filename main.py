@@ -5,7 +5,7 @@ import pygame
 import ctypes
 
 # Increas Dots Per inch so it looks sharper
-#ctypes.windll.shcore.SetProcessDpiAwareness(True)
+ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
 # Pygame Configuration
 pygame.init()
@@ -13,7 +13,7 @@ fps = 300
 fpsClock = pygame.time.Clock()
 width, height = 1280, 800
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-font = pygame.font.SysFont('Serif', 20)
+font = pygame.font.SysFont('Serif', 15)
 
 # Variables
 objects = []
@@ -23,7 +23,7 @@ drawColor = [0, 0, 0]
 brushSize = 30
 brushSizeSteps = 3
 # Canvas size
-canvasSize = [800, 800]
+canvasSize = [600, 600]
 
 # Button Class
 class Button():
@@ -96,15 +96,19 @@ def save():
     pygame.image.save(canvas, "canvas.png")
 
 # Button Variables.
-buttonWidth = 120
+buttonWidth = 100
 buttonHeight = 35
 
 # Buttons and their respective functions.
 buttons = [
     ['Black', lambda: changeColor([0, 0, 0])],
     ['White', lambda: changeColor([255, 255, 255])],
-    ['Blue', lambda: changeColor([0, 0, 255])],
-    ['Green', lambda: changeColor([0, 255, 0])],
+    ['Red', lambda: changeColor([200, 0, 0])],
+    ['Blue', lambda: changeColor([0, 0, 200])],
+    ['Green', lambda: changeColor([0, 200, 0])],
+    ['Yellow', lambda: changeColor([225, 225, 0])],
+    ['Cyan', lambda: changeColor([0, 225, 225])],
+    ['Violet', lambda: changeColor([225, 0, 225])],
     ['Brush Larger', lambda: changebrushSize('greater')],
     ['Brush Smaller', lambda: changebrushSize('smaller')],
     ['Save', save],
