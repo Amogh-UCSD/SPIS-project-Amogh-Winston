@@ -3,6 +3,7 @@
 import sys
 import pygame
 import ctypes
+import asyncio
 
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
