@@ -1,9 +1,14 @@
-# $ pip install pygame
+# To do: Make the frames into a video in a separate window to view the animation, make into a website
 # Imports
 import sys
 import pygame
 import ctypes
 import asyncio
+import cv2
+import argparse
+import glob
+from pathlib import Path
+import shutil
 
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
@@ -186,5 +191,4 @@ while True:
     pygame.draw.circle(screen, drawColor, [100, 100], brushSize,)
 
     pygame.display.flip()
-    print("testing")
     fpsClock.tick(fps)
