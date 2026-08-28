@@ -96,7 +96,7 @@ def save():
     pygame.image.save(canvas, "canvas.png")
 
 # Button Variables.
-buttonWidth = 100
+buttonWidth = 80
 buttonHeight = 35
 
 # Buttons and their respective functions.
@@ -107,6 +107,7 @@ buttons = [
     ['Blue', lambda: changeColor([0, 0, 200])],
     ['Green', lambda: changeColor([0, 200, 0])],
     ['Yellow', lambda: changeColor([225, 225, 0])],
+    ['Orange', lambda: changeColor([225, 128, 0])],
     ['Cyan', lambda: changeColor([0, 225, 225])],
     ['Violet', lambda: changeColor([225, 0, 225])],
     ['Brush Larger', lambda: changebrushSize('greater')],
