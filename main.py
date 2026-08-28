@@ -124,6 +124,8 @@ def save():
 def addFrame():
     frame = pygame.image.save(canvas, "frame.png")
     animFrames.append(frame)
+def playAnimation():
+    pass
 
 # Button Variables.
 buttonWidth = 80
@@ -144,7 +146,7 @@ buttons = [
     ['Brush Smaller', lambda: changebrushSize('smaller')],
     ['Save', save],
     ['Add Frame', addFrame]
-    #['Run Animation', Code to change display to an animated video]
+    #['Animation', playAnimation]
 ]
 
 # Making the buttons
