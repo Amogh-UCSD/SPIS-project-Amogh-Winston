@@ -9,6 +9,7 @@ import argparse
 import glob
 from pathlib import Path
 import shutil
+import os
 
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
