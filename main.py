@@ -9,7 +9,7 @@ ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
 # Pygame Configuration
 pygame.init()
-fps = 300
+fps = 800
 fpsClock = pygame.time.Clock()
 width, height = 1280, 800
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
@@ -17,11 +17,12 @@ font = pygame.font.SysFont('Serif', 15)
 
 # Variables
 objects = []
+animFrames = []
 # Initial color
 drawColor = [0, 0, 0]
 # Initial brush size
 brushSize = 30
-brushSizeSteps = 3
+brushSizeSteps = 1
 # Canvas size
 canvasSize = [600, 600]
 
@@ -77,6 +78,32 @@ class Button():
         ])
         screen.blit(self.buttonSurface, self.buttonRect)
 
+# Slider class if time permits
+#class Slider():
+#    def __init__(self, pos: tuple, size: tuple, startVal: float, min: int, max: int, color) -> None:
+#        self.size = size
+#        self.pos = pos
+#
+#        self.leftEdge = self.pos[0] - (size[0]//2)
+#        self.rightEdge = self.pos[0] + (size[0]//2)
+#        self.top = self.pos[1] + (size[1]//2)
+#        self.bottom = self.pos[1] - (size[1]//2)
+#
+#        self.min = min
+#        self.max = max
+#
+#        self.startVal = startVal
+#        self.color = color
+#
+#        self.container = pygame.Rect(self.leftEdge, self.top, self.size[0], self.size[1])
+#        self.knob = pygame.Rect(self.leftEdge + self.startVal -5, self.top, 10, self.size[1])
+#
+#        def moveKnob(self):
+#            (placeholder)
+#
+#        def render(self, app):
+#            pygame.draw.rect(app.screen, color, self.container)
+#            pygame.draw.rect(app.screen, "white", self.knob)
 # Helper functions
 # Changing color
 def changeColor(color):
@@ -94,6 +121,9 @@ def changebrushSize(dir):
 # Save the surface to the Disk
 def save():
     pygame.image.save(canvas, "canvas.png")
+def addFrame():
+    frame = pygame.image.save(canvas, "frame.png")
+    animFrames.append(frame)
 
 # Button Variables.
 buttonWidth = 80
@@ -113,6 +143,8 @@ buttons = [
     ['Brush Larger', lambda: changebrushSize('greater')],
     ['Brush Smaller', lambda: changebrushSize('smaller')],
     ['Save', save],
+    ['Add Frame', addFrame]
+    #['Run Animation', Code to change display to an animated video]
 ]
 
 # Making the buttons
