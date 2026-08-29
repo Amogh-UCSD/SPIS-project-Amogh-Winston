@@ -14,6 +14,15 @@ import os
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
 
+# Screen class for possibly later changing between states
+class Screen:
+    def handle_input(self, event):
+        raise NotImplementedError("handle_input must be overridden")
+    def update(self, delta_time):
+        raise NotImplementedError("update must be overridden")
+    def render(self):
+        raise NotImplementedError("render must be overridden")
+
 # Pygame Configuration
 pygame.init()
 fps = 800
@@ -131,6 +140,8 @@ def save():
 def addFrame():
     frame = pygame.image.save(canvas, "frame.png")
     animFrames.append(frame)
+    # clear screen for next frame
+    canvas.fill((255, 255, 255))
 def playAnimation():
     pass
 
