@@ -29,7 +29,7 @@ fps = 800
 fpsClock = pygame.time.Clock()
 width, height = 1280, 800
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-font = pygame.font.SysFont('Serif', 15)
+font = pygame.font.SysFont('Serif', 10)
 
 # Variables
 objects = []
@@ -142,6 +142,8 @@ def addFrame():
     animFrames.append(frame)
     # clear screen for next frame
     canvas.fill((255, 255, 255))
+def keepFrame():
+    canvas = animFrames[len(animFrames)-1]
 def playAnimation():
     pass
     #fps = 5
@@ -152,7 +154,7 @@ def playAnimation():
     #canvas.fill((255,255,255))
 
 # Button Variables.
-buttonWidth = 80
+buttonWidth = 60
 buttonHeight = 35
 
 # Buttons and their respective functions.
@@ -170,6 +172,7 @@ buttons = [
     ['Brush Smaller', lambda: changebrushSize('smaller')],
     ['Save', save],
     ['Add Frame', addFrame]
+    #['Keep Frame', keepFrame]
     #['Animation', playAnimation]
 ]
 
