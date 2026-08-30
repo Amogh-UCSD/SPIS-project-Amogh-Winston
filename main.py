@@ -138,7 +138,7 @@ def changebrushSize(dir):
 def save():
     pygame.image.save(canvas, "canvas.png")
 def addFrame():
-    frame = pygame.image.save(canvas, "frame.png")
+    frame = canvas.copy()
     animFrames.append(frame)
     # clear screen for next frame
     canvas.fill((255, 255, 255))
