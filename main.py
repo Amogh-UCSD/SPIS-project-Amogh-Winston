@@ -1,4 +1,5 @@
 # To do: Make the frames into a video in a separate window to view the animation, make into a website
+# Website will use pygbag instead of html for pygame compatibility
 # Imports
 import sys
 import pygame
@@ -149,6 +150,7 @@ def addFrame(canvas):
 def keepFrame(canvas):
     if (len(animFrames) == 0):
         return None
+    canvas.fill((255,255,255))
     canvas = animFrames[len(animFrames)-1]
 def playAnimation(canvas, fps):
     #pass
