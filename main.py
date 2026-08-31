@@ -11,6 +11,7 @@ import glob
 from pathlib import Path
 import shutil
 import os
+import numpy as np
 
 # Increas Dots Per inch so it looks sharper
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
@@ -144,7 +145,18 @@ def save(canvas):
     pygame.image.save(canvas, "canvas.png")
 def addFrame(canvas, animFrames):
     frame = canvas.copy()
-    animFrames.append(frame)
+    pygame.image.save(frame, "frame.png")
+    #animFrames.append(frame)
+
+    files = glob.glob("*.png")
+    for myFile in files:
+        image = cv2.imread(myFile)
+        animFrames.append(image) # append each image to array
+    # this will print the channel number, size, and number of images in the file
+    print('animFrames shape:', np.array(animFrames).shape) 
+    cv2.imshow('frame', animFrames[len(animFrames)-1])
+    cv2.waitKey(0) 
+
     # clear screen for next frame
     canvas.fill((255, 255, 255))
 def keepFrame(canvas, animFrames):
@@ -159,6 +171,7 @@ def playAnimation(canvas, fps, animFrames):
         canvas = i
     # return to drawing state after playing
     fps = 800
+    canvas = pygame.Surface(canvasSize)
     canvas.fill((255,255,255))
 def reset(canvas, animFrames):
     canvas.fill((255,255,255))
