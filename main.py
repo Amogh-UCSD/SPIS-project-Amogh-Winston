@@ -145,13 +145,13 @@ def addFrame():
 def keepFrame():
     canvas = animFrames[len(animFrames)-1]
 def playAnimation():
-    pass
-    #fps = 5
-    #for i in animFrames:
-    #    canvas = i
+    #pass
+    fps = 5
+    for i in animFrames:
+        canvas = i
     # return to drawing state after playing
-    #fps = 800
-    #canvas.fill((255,255,255))
+    fps = 800
+    canvas.fill((255,255,255))
 
 # Button Variables.
 buttonWidth = 60
