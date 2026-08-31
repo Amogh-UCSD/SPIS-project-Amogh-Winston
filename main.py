@@ -164,8 +164,9 @@ def keepFrame(canvas, animFrames):
         return None
     canvas.fill((255,255,255))
     canvas = animFrames[len(animFrames)-1]
+# Main focus is here, button currently does not break anything but does not play anything either
+# Maybe change it to affect the pygame windown instead of the canvas?
 def playAnimation(canvas, fps, animFrames):
-    #pass
     fps = 5
     for i in animFrames:
         canvas = i
