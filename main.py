@@ -160,6 +160,10 @@ def playAnimation(canvas, fps, animFrames):
     # return to drawing state after playing
     fps = 800
     canvas.fill((255,255,255))
+def reset(canvas, animFrames):
+    canvas.fill((255,255,255))
+    for i in animFrames:
+        animFrames.remove(i)
 
 # Button Variables.
 buttonWidth = 60
@@ -181,7 +185,8 @@ buttons = [
     ['Save', lambda: save(canvas)],
     ['Add Frame', lambda: addFrame(canvas, animFrames)],
     ['Keep Frame', lambda: keepFrame(canvas, animFrames)],
-    ['Animation', lambda: playAnimation(canvas, fps, animFrames)]
+    ['Animation', lambda: playAnimation(canvas, fps, animFrames)],
+    ['Reset', lambda: reset(canvas, animFrames)]
 ]
 
 # Making the buttons
