@@ -162,8 +162,8 @@ def playAnimation(canvas, fps, animFrames):
     canvas.fill((255,255,255))
 def reset(canvas, animFrames):
     canvas.fill((255,255,255))
-    for i in animFrames:
-        animFrames.remove(i)
+    while len(animFrames) >= 1:
+        animFrames.pop(0)
 
 # Button Variables.
 buttonWidth = 60
