@@ -142,17 +142,17 @@ def changebrushSize(dir):
 # Save the surface to the Disk
 def save(canvas):
     pygame.image.save(canvas, "canvas.png")
-def addFrame(canvas):
+def addFrame(canvas, animFrames):
     frame = canvas.copy()
     animFrames.append(frame)
     # clear screen for next frame
     canvas.fill((255, 255, 255))
-def keepFrame(canvas):
+def keepFrame(canvas, animFrames):
     if (len(animFrames) == 0):
         return None
     canvas.fill((255,255,255))
     canvas = animFrames[len(animFrames)-1]
-def playAnimation(canvas, fps):
+def playAnimation(canvas, fps, animFrames):
     #pass
     fps = 5
     for i in animFrames:
@@ -179,9 +179,9 @@ buttons = [
     ['Brush Larger', lambda: changebrushSize('greater')],
     ['Brush Smaller', lambda: changebrushSize('smaller')],
     ['Save', lambda: save(canvas)],
-    ['Add Frame', lambda: addFrame(canvas)],
-    ['Keep Frame', lambda: keepFrame(canvas)],
-    ['Animation', lambda: playAnimation(canvas, fps)]
+    ['Add Frame', lambda: addFrame(canvas, animFrames)],
+    ['Keep Frame', lambda: keepFrame(canvas, animFrames)],
+    ['Animation', lambda: playAnimation(canvas, fps, animFrames)]
 ]
 
 # Making the buttons
