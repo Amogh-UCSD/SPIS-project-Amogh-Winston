@@ -1,4 +1,4 @@
-# To do: Make the frames into a video in a separate window to view the animation, make into a website
+# To do: Make into a website
 # Website will use pygbag instead of html for pygame compatibility
 # Imports
 import sys
@@ -175,8 +175,7 @@ def keepFrame(animFrames):
     canvas.fill((255,255,255))
     canvas = animFrames[len(animFrames)-1]
 
-# Main focus is here, button currently does not break anything but does not play anything either
-# Maybe change it to affect the pygame windown instead of the canvas?
+
 animationPlaying = False
 frame_num = 0
 def playAnimation(canvas, animFrames):
