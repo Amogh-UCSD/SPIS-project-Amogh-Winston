@@ -36,6 +36,7 @@ font = pygame.font.SysFont('Serif', 10)
 # Variables
 objects = []
 animFrames = []
+num_frames = 0
 # Initial color
 drawColor = [0, 0, 0]
 # Initial brush size
@@ -143,41 +144,78 @@ def changebrushSize(dir):
 # Save the surface to the Disk
 def save(canvas):
     pygame.image.save(canvas, "canvas.png")
+
 def addFrame(canvas, animFrames):
-    frame = canvas.copy()
-    pygame.image.save(frame, "frame.png")
+    #frame = canvas.copy()
+    #pygame.image.save(frame, "frame.png")
     #animFrames.append(frame)
 
-    files = glob.glob("*.png")
-    for myFile in files:
-        image = cv2.imread(myFile)
-        animFrames.append(image) # append each image to array
+    #files = glob.glob("*.png")
+    #for myFile in files:
+    #    image = cv2.imread(myFile)
+    #    animFrames.append(image) # append each image to array
     # this will print the channel number, size, and number of images in the file
-    print('animFrames shape:', np.array(animFrames).shape) 
-    cv2.imshow('frame', animFrames[len(animFrames)-1])
-    cv2.waitKey(0) 
+    #print('animFrames shape:', np.array(animFrames).shape) 
+    #cv2.imshow('frame', animFrames[len(animFrames)-1])
+    #cv2.waitKey(0) 
+
+    global num_frames
+    pygame.image.save(canvas, f"frame_{num_frames}.png")
+    num_frames += 1
+    frame = canvas.copy()
+    animFrames.append(frame)
 
     # clear screen for next frame
     canvas.fill((255, 255, 255))
-def keepFrame(canvas, animFrames):
+
+def keepFrame(animFrames):
+    global canvas
     if (len(animFrames) == 0):
         return None
     canvas.fill((255,255,255))
     canvas = animFrames[len(animFrames)-1]
+
 # Main focus is here, button currently does not break anything but does not play anything either
 # Maybe change it to affect the pygame windown instead of the canvas?
-def playAnimation(canvas, fps, animFrames):
-    fps = 5
-    for i in animFrames:
-        canvas = i
+animationPlaying = False
+frame_num = 0
+def playAnimation(canvas, animFrames):
+    global animationPlaying
+    global fps
+    global frame_num
+    if len(animFrames) > 0:
+        animationPlaying = True
+        frame_num = 0
+        fps = 24
+
+    #for i in animFrames:
+    #    canvas = i
     # return to drawing state after playing
-    fps = 800
-    canvas = pygame.Surface(canvasSize)
-    canvas.fill((255,255,255))
+    #fps = 800
+    #canvas = pygame.Surface(canvasSize)
+    #canvas.fill((255,255,255))
+
+    
+
 def reset(canvas, animFrames):
+    global num_frames
+    global frame_num
+    global animationPlaying
+    global fps
     canvas.fill((255,255,255))
     while len(animFrames) >= 1:
         animFrames.pop(0)
+    num_frames = 0
+    frame_num = 0
+    animationPlaying = False
+    fps = 800
+
+# Copies frame_* files to a folder in host memory, if time permits
+def saveAnimtation():
+    pass
+# Lets user upload pre existing files as frames in animFrames, if time permits
+def loadAnimation():
+    pass
 
 # Button Variables.
 buttonWidth = 60
@@ -198,8 +236,8 @@ buttons = [
     ['Brush Smaller', lambda: changebrushSize('smaller')],
     ['Save', lambda: save(canvas)],
     ['Add Frame', lambda: addFrame(canvas, animFrames)],
-    ['Keep Frame', lambda: keepFrame(canvas, animFrames)],
-    ['Animation', lambda: playAnimation(canvas, fps, animFrames)],
+    ['Keep Frame', lambda: keepFrame(animFrames)],
+    ['Animation', lambda: playAnimation(canvas, animFrames)],
     ['Reset', lambda: reset(canvas, animFrames)]
 ]
 
@@ -219,9 +257,17 @@ while True:
     for object in objects:
         object.process()
 
+    if animationPlaying and animFrames:
+        frame_num = (frame_num) % num_frames
+        frameToDraw = animFrames[frame_num]
+        frame_num += 1
+    else:
+        frameToDraw = canvas
+        fps = 800
+        
      # Draw the Canvas at the center of the screen
     x, y = screen.get_size()
-    screen.blit(canvas, [x/2 - canvasSize[0]/2, y/2 - canvasSize[1]/2])
+    screen.blit(frameToDraw, [x/2 - canvasSize[0]/2, y/2 - canvasSize[1]/2])
 
     # Drawing with the mouse
     if pygame.mouse.get_pressed()[0]:
