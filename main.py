@@ -256,7 +256,7 @@ async def main():
         # Drawing the Buttons
         for object in objects:
             object.process()
-
+        global frame_num
         if animationPlaying and animFrames:
             frame_num = (frame_num) % num_frames
             frameToDraw = animFrames[frame_num]
@@ -264,7 +264,7 @@ async def main():
         else:
             frameToDraw = canvas
             fps = 800
-            
+                
         # Draw the Canvas at the center of the screen
         x, y = screen.get_size()
         screen.blit(frameToDraw, [x/2 - canvasSize[0]/2, y/2 - canvasSize[1]/2])
