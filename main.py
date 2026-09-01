@@ -248,6 +248,7 @@ for index, buttonName in enumerate(buttons):
 async def main():
     # Main draw loop.
     while True:
+        global fps
         screen.fill((30, 30, 30))
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
