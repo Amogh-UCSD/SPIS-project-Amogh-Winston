@@ -31,7 +31,7 @@ fps = 800
 fpsClock = pygame.time.Clock()
 width, height = 1280, 800
 screen = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-font = pygame.font.SysFont('Serif', 10)
+font = pygame.font.SysFont('Serif', 13)
 
 # Variables
 objects = []
@@ -232,8 +232,8 @@ buttons = [
     ['Orange', lambda: changeColor([225, 128, 0])],
     ['Cyan', lambda: changeColor([0, 225, 225])],
     ['Violet', lambda: changeColor([225, 0, 225])],
-    ['Brush Larger', lambda: changebrushSize('greater')],
-    ['Brush Smaller', lambda: changebrushSize('smaller')],
+    ['Larger', lambda: changebrushSize('greater')],
+    ['Smaller', lambda: changebrushSize('smaller')],
     ['Save', lambda: save(canvas)],
     ['Add Frame', lambda: addFrame(canvas, animFrames)],
     ['Keep Frame', lambda: keepFrame(animFrames)],
