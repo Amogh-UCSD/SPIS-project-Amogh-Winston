@@ -1,5 +1,6 @@
 # To do: Make into a website
 # Website will use pygbag instead of html for pygame compatibility
+# Can now open in browser but window does not display for some reason, http://localhost:8000
 # Imports
 import sys
 import pygame
