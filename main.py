@@ -244,40 +244,43 @@ buttons = [
 for index, buttonName in enumerate(buttons):
     Button(index * (buttonWidth + 10) + 10, 10, buttonWidth,
            buttonHeight, buttonName[0], buttonName[1])
+    
+async def main():
+    # Main draw loop.
+    while True:
+        screen.fill((30, 30, 30))
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+        # Drawing the Buttons
+        for object in objects:
+            object.process()
 
-# Main draw loop.
-while True:
-    screen.fill((30, 30, 30))
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            sys.exit()
-    # Drawing the Buttons
-    for object in objects:
-        object.process()
+        if animationPlaying and animFrames:
+            frame_num = (frame_num) % num_frames
+            frameToDraw = animFrames[frame_num]
+            frame_num += 1
+        else:
+            frameToDraw = canvas
+            fps = 800
+            
+        # Draw the Canvas at the center of the screen
+        x, y = screen.get_size()
+        screen.blit(frameToDraw, [x/2 - canvasSize[0]/2, y/2 - canvasSize[1]/2])
 
-    if animationPlaying and animFrames:
-        frame_num = (frame_num) % num_frames
-        frameToDraw = animFrames[frame_num]
-        frame_num += 1
-    else:
-        frameToDraw = canvas
-        fps = 800
-        
-     # Draw the Canvas at the center of the screen
-    x, y = screen.get_size()
-    screen.blit(frameToDraw, [x/2 - canvasSize[0]/2, y/2 - canvasSize[1]/2])
+        # Drawing with the mouse
+        if pygame.mouse.get_pressed()[0]:
+            mx, my = pygame.mouse.get_pos()
+            # Calculate Position on the Canvas
+            dx = mx - x/2 + canvasSize[0]/2
+            dy = my - y/2 + canvasSize[1]/2
+            pygame.draw.circle(canvas, drawColor, [dx, dy], brushSize,)
 
-    # Drawing with the mouse
-    if pygame.mouse.get_pressed()[0]:
-        mx, my = pygame.mouse.get_pos()
-        # Calculate Position on the Canvas
-        dx = mx - x/2 + canvasSize[0]/2
-        dy = my - y/2 + canvasSize[1]/2
-        pygame.draw.circle(canvas, drawColor, [dx, dy], brushSize,)
+        # Reference Dot
+        pygame.draw.circle(screen, drawColor, [100, 100], brushSize,)
 
-    # Reference Dot
-    pygame.draw.circle(screen, drawColor, [100, 100], brushSize,)
-
-    pygame.display.flip()
-    fpsClock.tick(fps)
+        pygame.display.flip()
+        fpsClock.tick(fps)
+        await asyncio.sleep(0)  # This line is critical; ensure you keep the sleep time at 0
+asyncio.run(main())
