@@ -192,7 +192,7 @@ def loadAnimation():
     pass
 
 # Button Variables.
-buttonWidth = 60
+buttonWidth = 40
 buttonHeight = 35
 
 # Buttons and their respective functions.
