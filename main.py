@@ -139,19 +139,6 @@ def save(canvas):
     pygame.image.save(canvas, "canvas.png")
 
 def addFrame(canvas, animFrames):
-    #frame = canvas.copy()
-    #pygame.image.save(frame, "frame.png")
-    #animFrames.append(frame)
-
-    #files = glob.glob("*.png")
-    #for myFile in files:
-    #    image = cv2.imread(myFile)
-    #    animFrames.append(image) # append each image to array
-    # this will print the channel number, size, and number of images in the file
-    #print('animFrames shape:', np.array(animFrames).shape) 
-    #cv2.imshow('frame', animFrames[len(animFrames)-1])
-    #cv2.waitKey(0) 
-
     global num_frames
     pygame.image.save(canvas, f"frame_{num_frames}.png")
     num_frames += 1
@@ -180,12 +167,7 @@ def playAnimation(canvas, animFrames):
         frame_num = 0
         fps = 24
 
-    #for i in animFrames:
-    #    canvas = i
-    # return to drawing state after playing
-    #fps = 800
-    #canvas = pygame.Surface(canvasSize)
-    #canvas.fill((255,255,255))
+
 
     
 
